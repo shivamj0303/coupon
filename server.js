@@ -65,6 +65,9 @@ app.post("/claim", abusePrevention, async (req, res) => {
 
     res.json({ message: `✅ Coupon claimed: ${couponCode}` });
 });
+app.get("/", (req, res) => {
+    res.send("Backend is running!");
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
