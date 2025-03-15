@@ -23,7 +23,8 @@ app.use(cors({
     }
   },
   credentials: true
-}));xpress.json());
+}));
+app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
