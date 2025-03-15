@@ -10,8 +10,12 @@ const allowedOrigins = [
   process.env.FRONTEND_URL 
 ];
 
+console.log("Allowed Origins:", allowedOrigins);
+
 app.use(cors({
   origin: function (origin, callback) {
+    console.log("Incoming request from:", origin);
+    
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -19,8 +23,7 @@ app.use(cors({
     }
   },
   credentials: true
-}));
-app.use(express.json());
+}));xpress.json());
 app.use(cookieParser());
 app.use(cors());
 
