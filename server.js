@@ -7,7 +7,7 @@ require("dotenv").config();
 const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://coupon-frontend-hazel.vercel.app" 
+  process.env.FRONTEND_URL 
 ];
 
 app.use(cors({
