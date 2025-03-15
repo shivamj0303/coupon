@@ -79,12 +79,24 @@ async function abusePrevention(req, res, next) {
 }
 
 // API to claim a coupon
-app.post("/claim", abusePrevention, async (req, res) => {
-    const couponCode = await getNextAvailableCoupon(req.userIdentifier);
-    if (!couponCode) return res.status(400).json({ message: "No coupons left!" });
+app.post("/claim", (req, res) => {
+    console.log("Incoming Request Body:", req.body);
+    console.log("Incoming Cookies:", req.cookies);
+    console.log("Incoming Headers:", req.headers);
 
-    res.json({ message: `✅ Coupon claimed: ${couponCode}` });
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ message: "Invalid request payload" });
+    }
+
+    // Proceed with coupon assignment logic...
+    res.json({ message: "Coupon claimed successfully" });
 });
+// app.post("/claim", abusePrevention, async (req, res) => {
+//     const couponCode = await getNextAvailableCoupon(req.userIdentifier);
+//     if (!couponCode) return res.status(400).json({ message: "No coupons left!" });
+
+//     res.json({ message: `✅ Coupon claimed: ${couponCode}` });
+// });
 app.get("/", (req, res) => {
     res.send("Backend is running!");
 });
